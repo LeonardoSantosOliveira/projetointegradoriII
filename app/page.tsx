@@ -1,7 +1,37 @@
-"user cliente";
+"user cliente"
+
+import { Input } from "@/components/ui/input"
+import Header from "./_components/ui/header"
+import { Button } from "@/components/ui/button"
+import { icons, SearchIcon } from "lucide-react"
+import Image from "next/image"
 
 const Home = () => {
-  return;
-};
+  return (
+    <div>
+      {/* Header */}
+      <Header />
+      <div className="p-5">
+        <h2 className="text-xl font-bold">Olá, Leonardo!</h2>
+        <p>Sábado, 25 de Outubro.</p>
 
-export default Home;
+        <div className="mt-6 flex items-center gap-2">
+          <Input placeholder="Faça sua busca..." />
+          <Button>
+            <SearchIcon />
+          </Button>
+        </div>
+        <div className="relative mt-6 h-[150px] w-full">
+          <Image
+            alt="Agende com os melhores..."
+            src="/banner-01.png"
+            fill
+            className="rounded-xl object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Home
