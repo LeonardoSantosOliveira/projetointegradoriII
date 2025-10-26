@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input"
 import Header from "./_components/ui/header"
 import { Button } from "@/components/ui/button"
-import { icons, SearchIcon } from "lucide-react"
+import { SearchIcon } from "lucide-react"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -15,6 +15,11 @@ import BarberShopItem from "./_components/ui/barbershop-item"
 const Home = async () => {
   // chama bd
   const barbershops = await db.barbershop.findMany({})
+  const popularBarberShop = await db.barbershop.findMany({
+    orderBy: {
+      name: "desc",
+    },
+  })
   console.log({ barbershops })
   return (
     <div>
@@ -73,7 +78,25 @@ const Home = async () => {
             <BarberShopItem key={barbershop.id} barbershop={barbershop} />
           ))}
         </div>
+        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
+          Populares
+        </h2>
+        <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+          {popularBarberShop.map((barbershop) => (
+            <BarberShopItem key={barbershop.id} barbershop={barbershop} />
+          ))}
+        </div>
       </div>
+      <footer>
+        <Card>
+          <CardContent className="px-5 py-6">
+            <p className="text-sm text-gray-400">
+              © 2025 - Projeto Integrador
+              <span className="font-bold uppercase text-red-600"> UNIVESP</span>
+            </p>
+          </CardContent>
+        </Card>
+      </footer>
     </div>
   )
 }
