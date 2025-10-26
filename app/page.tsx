@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input"
 import Header from "./_components/ui/header"
 import { Button } from "@/components/ui/button"
-import { SearchIcon } from "lucide-react"
+import { FootprintsIcon, SearchIcon } from "lucide-react"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -33,6 +33,43 @@ const Home = async () => {
           <Input placeholder="Faça sua busca..." />
           <Button>
             <SearchIcon />
+          </Button>
+        </div>
+
+        <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+          <Button className="gap-2" variant={"secondary"}>
+            <Image src="/cabelo.svg" width={16} height={16} alt="cabelo" />
+            Cabelo
+          </Button>
+          <Button className="gap-2" variant={"secondary"}>
+            <Image src="/barba.svg" width={16} height={16} alt="barba" />
+            Barba
+          </Button>
+          <Button className="gap-2" variant={"secondary"}>
+            <Image
+              src="/acabamento.svg"
+              width={16}
+              height={16}
+              alt="acabamento"
+            />
+            Acabamento
+          </Button>
+          <Button className="gap-2" variant={"secondary"}>
+            <FootprintsIcon size={16}/>
+            Pézinho
+          </Button>
+          <Button className="gap-2" variant={"secondary"}>
+            <Image src="/barba.svg" width={16} height={16} alt="barba" />
+            Sobrancelha
+          </Button>
+          <Button className="gap-2" variant={"secondary"}>
+            <Image
+              src="/acabamento.svg"
+              width={16}
+              height={16}
+              alt="acabamento"
+            />
+            Acabamento
           </Button>
         </div>
         <div className="relative mt-6 h-[150px] w-full">
