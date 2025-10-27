@@ -19,7 +19,6 @@ const Home = async () => {
       name: "desc",
     },
   })
-  console.log({ barbershops })
   return (
     <div>
       {/* Header */}
