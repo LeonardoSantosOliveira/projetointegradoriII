@@ -5,7 +5,6 @@ import Header from "./_components/ui/header"
 import { Button } from "@/components/ui/button"
 import { SearchIcon } from "lucide-react"
 import Image from "next/image"
-import { Card, CardContent } from "@/components/ui/card"
 import { db } from "./_lib/prisma"
 import BarberShopItem from "./_components/ui/barbershop-item"
 import { quickSearchOptions } from "./_constants/search"
@@ -75,16 +74,6 @@ const Home = async () => {
           ))}
         </div>
       </div>
-      <footer>
-        <Card>
-          <CardContent className="px-5 py-6">
-            <p className="text-sm text-gray-400">
-              © 2025 - Projeto Integrador
-              <span className="font-bold uppercase text-red-600"> UNIVESP</span>
-            </p>
-          </CardContent>
-        </Card>
-      </footer>
     </div>
   )
 }
