@@ -13,20 +13,14 @@ import { quickSearchOptions } from "@/app/_constants/search"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-import { signIn, signOut, useSession } from "next-auth/react"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+import { signOut, useSession } from "next-auth/react"
 import { Avatar, AvatarImage } from "@/components/ui/avatar"
+import SingIn from "./sign-in"
 
 const SidebarButton = () => {
   const { data } = useSession()
-  const handleLoginWithGoogleClick = () => signIn("google")
+
   const handleLogoutClick = () => signOut()
   return (
     <SheetContent className="overflow-y-auto">
@@ -44,25 +38,7 @@ const SidebarButton = () => {
                 </Button>
               </DialogTrigger>
               <DialogContent className="w-[90%]">
-                <DialogHeader>
-                  <DialogTitle>Faça login na plataforma</DialogTitle>
-                  <DialogDescription>
-                    Conecte-se usando sua conta do Google.
-                  </DialogDescription>
-                </DialogHeader>
-                <Button
-                  variant={"outline"}
-                  className="gap-2 font-bold"
-                  onClick={handleLoginWithGoogleClick}
-                >
-                  <Image
-                    alt="google logo"
-                    src="/google.svg"
-                    width={18}
-                    height={18}
-                  />
-                  Google
-                </Button>
+                <SingIn />
               </DialogContent>
             </Dialog>
           </>
