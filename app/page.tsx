@@ -1,14 +1,11 @@
-"user cliente"
-
-import { Input } from "@/components/ui/input"
 import Header from "./_components/ui/header"
 import { Button } from "@/components/ui/button"
-import { SearchIcon } from "lucide-react"
 import Image from "next/image"
 import { db } from "./_lib/prisma"
 import BarberShopItem from "./_components/ui/barbershop-item"
 import { quickSearchOptions } from "./_constants/search"
 import BookingItem from "./_components/ui/booking-item"
+import Search from "./_components/ui/search"
 
 const Home = async () => {
   // chama bd
@@ -26,11 +23,8 @@ const Home = async () => {
         <h2 className="text-xl font-bold">Olá, Leonardo!</h2>
         <p>Sábado, 25 de Outubro.</p>
 
-        <div className="mt-6 flex items-center gap-2">
-          <Input placeholder="Faça sua busca..." />
-          <Button>
-            <SearchIcon />
-          </Button>
+        <div className="mt-6">
+          <Search />
         </div>
 
         <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
