@@ -7,15 +7,39 @@ import { quickSearchOptions } from "./_constants/search"
 import BookingItem from "./_components/ui/booking-item"
 import Search from "./_components/ui/search"
 import Link from "next/link"
+import { getServerSession } from "next-auth"
+import { authOptions } from "./_lib/auth"
 
 const Home = async () => {
-  // chama bd
+  const session = await getServerSession(authOptions)
   const barbershops = await db.barbershop.findMany({})
   const popularBarberShop = await db.barbershop.findMany({
     orderBy: {
       name: "desc",
     },
   })
+
+  const bookings = session?.user
+    ? await db.booking.findMany({
+        where: {
+          userId: (session?.user as any).id,
+          date: {
+            gte: new Date(),
+          },
+        },
+        include: {
+          service: {
+            include: {
+              barbershop: true,
+            },
+          },
+        },
+        orderBy: {
+          date: "asc"
+        }
+      })
+    : []
+
   return (
     <div>
       {/* Header */}
@@ -30,7 +54,12 @@ const Home = async () => {
 
         <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
           {quickSearchOptions.map((option) => (
-            <Button key={option.id} className="gap-2" variant={"secondary"} asChild>
+            <Button
+              key={option.id}
+              className="gap-2"
+              variant={"secondary"}
+              asChild
+            >
               <Link href={`/barbershops?search=${option.title}`}>
                 <Image
                   src={option.imageUrl}
@@ -51,8 +80,14 @@ const Home = async () => {
             className="rounded-xl object-cover"
           />
         </div>
-
-        <BookingItem />
+        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
+          Agendamentos
+        </h2>
+        <div className="flex gap-3 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+          {bookings.map((booking) => (
+            <BookingItem key={booking.id} booking={booking} />
+          ))}
+        </div>
 
         <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
           Recomendados
