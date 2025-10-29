@@ -47,8 +47,10 @@ const Home = async () => {
       {/* Header */}
       <Header />
       <div className="p-5">
-        <h2 className="text-xl font-bold">Olá, {session?.user ? session.user.name : 'bem-vindo!'}</h2>
-        <p>{format(new Date(), "EEEE, dd 'de' MMMM", {locale: ptBR})}</p>
+        <h2 className="text-xl font-bold">
+          Olá, {session?.user ? session.user.name : "bem-vindo!"}
+        </h2>
+        <p>{format(new Date(), "EEEE, dd 'de' MMMM", { locale: ptBR })}</p>
 
         <div className="mt-6">
           <Search />
@@ -82,9 +84,11 @@ const Home = async () => {
             className="rounded-xl object-cover"
           />
         </div>
-        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
-          Agendamentos
-        </h2>
+        {bookings.length > 0 && (
+          <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
+            Agendamentos
+          </h2>
+        )}
         <div className="flex gap-3 overflow-x-auto [&::-webkit-scrollbar]:hidden">
           {bookings.map((booking) => (
             <BookingItem key={booking.id} booking={booking} />
