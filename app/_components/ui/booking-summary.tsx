@@ -37,7 +37,7 @@ const BookingSummary = () => {
     //     </div>
     //   </CardContent>
     // </Card>
-  )
+  //)
 }
 
 export default BookingSummary
