@@ -14,8 +14,8 @@ const Header = () => {
           <Image
             alt="Logo projeto integrador"
             src="/logo.png"
-            height={18}
-            width={120}
+            height={30}
+            width={65}
           />
         </Link>
         <Sheet>
